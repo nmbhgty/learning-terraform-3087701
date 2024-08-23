@@ -33,7 +33,7 @@ module "blog_vpc" {
   }
 }
 
-module "blog_ag" {
+module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "8.0.0"
   # insert the 1 required variable here
@@ -68,6 +68,8 @@ module "blog_alb" {
       }
     }
   }
+
+  target_group_arns = module.blog_autoscaling.autoscaling_group_arns
 }
 
 
