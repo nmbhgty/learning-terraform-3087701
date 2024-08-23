@@ -80,6 +80,7 @@ module "blog_alb" {
       # The attachment happens in the ASG module above
       create_attachment = false
     }
+  }
 }
 
 
