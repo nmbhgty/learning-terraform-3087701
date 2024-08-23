@@ -69,7 +69,7 @@ module "blog_alb" {
     }
   }
 
-  target_groups = module.blog_autoscaling.autoscaling_group_arn
+  target_groups = module.blog_autoscaling.autoscaling_group_target_group_arns
 }
 
 
