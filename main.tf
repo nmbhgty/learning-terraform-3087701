@@ -63,7 +63,7 @@ module "blog_alb" {
       port     = 80
       protocol = "HTTP"
       forward = {
-        target_group_key = "blog_asg"
+        target_group_key = "blog-asg"
       }
     }
   }
