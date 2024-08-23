@@ -32,7 +32,7 @@ module "blog_vpc" {
 module "blog_asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
 
-  name = "blog"
+  name = "blog-asg"
   min_size = 1
   max_size = 2
 
@@ -61,7 +61,7 @@ module "blog_alb" {
       port     = 80
       protocol = "HTTP"
       forward = {
-        target_group_key = "blog_asg"
+        target_group_key = "blog-asg"
       }
     }
   }
