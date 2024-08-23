@@ -71,15 +71,10 @@ module "alb" {
       port            = 80
       target_type     = "instance"
       target_id       = blog.instance_id
-      }
     }
   }
-
-  tags = {
-    Environment = "dev"
-    Project     = "temp"
-  }
 }
+
 
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
