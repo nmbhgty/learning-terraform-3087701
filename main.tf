@@ -44,7 +44,7 @@ module "blog_asg" {
 
   traffic_source_attachments = {
     blog-alb = {
-      traffic_source_identifier = module.blog_alb.arn
+      traffic_source_identifier = module.blog_alb.id
       traffic_source_type       = "elbv2"
     }
   }
@@ -62,6 +62,9 @@ module "blog_alb" {
     blog_http_listener = {
       port     = 80
       protocol = "HTTP"
+      forward = {
+        target_group_key = "blog_asg"
+      }
     }
   }
 }
