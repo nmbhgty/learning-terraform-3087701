@@ -43,8 +43,10 @@ module "blog_asg" {
   instance_type = var.instance_type
 
   traffic_source_attachments = {
-    traffic_source_identifier = module.blog_alb.arn
-    traffic_source_type       = "elbv2"
+    blog-alb = {
+      traffic_source_identifier = module.blog_alb.arn
+      traffic_source_type       = "elbv2"
+    }
   }
 }
 
