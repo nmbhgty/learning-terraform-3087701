@@ -59,15 +59,13 @@ module "blog_alb" {
   subnets         = module.blog_vpc.public_subnets
   security_groups = [module.blog_sg.security_group_id]
 
-  listeners = {
-    blog_http_listener = {
-      port     = 80
-      protocol = "HTTP"
-      forward = {
-        target_group_key = "blog_tg"
-      }
+  http_listener = [
+    {
+      port                = 80
+      protocol            = "HTTP"
+      target_group_index  = 0
     }
-  }
+  ]
 }
 
 
