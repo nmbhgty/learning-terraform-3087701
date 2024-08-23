@@ -33,7 +33,7 @@ module "blog_vpc" {
   }
 }
 
-module "blog_autoscaling" {
+module "blog_asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "8.0.0"
 
@@ -47,8 +47,6 @@ module "blog_autoscaling" {
   
   image_id      = data.aws_ami.app_ami.id
   instance_type = var.instance_type
-
-  autoscaling_group_target_group_arns = module.blog_als.target_group_arns
 }
 
 module "blog_alb" {
@@ -70,7 +68,7 @@ module "blog_alb" {
     }
   }
 
-  local_create  = false
+  target_groups = module.blog_asg.autoscaling_group_target_group_arns
 }
 
 
