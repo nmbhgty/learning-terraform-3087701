@@ -62,9 +62,6 @@ module "blog_alb" {
     blog_http_listener = {
       port     = 80
       protocol = "HTTP"
-      forward = {
-        target_group_key = "blog-asg"
-      }
     }
   }
 }
