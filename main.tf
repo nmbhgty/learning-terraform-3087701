@@ -50,7 +50,8 @@ module "blog_asg" {
 }
 
 module "blog_alb" {
-  source = "terraform-aws-modules/alb/aws"
+  source  = "terraform-aws-modules/alb/aws"
+  version = "6.10.0"
 
   name    = "blog-alb"
 
