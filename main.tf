@@ -44,7 +44,7 @@ module "blog_asg" {
 
   traffic_source_attachments = {
     ts-blog-alb = {
-      traffic_source_identifier = module.blog_alb.id
+      traffic_source_identifier = module.blog_alb.target_groups["blog_asg"].id
       traffic_source_type       = "elbv2"
     }
   }
