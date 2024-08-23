@@ -47,7 +47,7 @@ resource "aws_instance" "blog" {
 
 module "alb" {
   source = "terraform-aws-modules/alb/aws"
-  
+
   name    = "blog-alb"
 
   vpc_id          = module.blog_vpc.vpc_id
@@ -58,19 +58,19 @@ module "alb" {
     blog_http_listener = {
       port     = 80
       protocol = "HTTP"
-      target_group_index = 0
+      forward = {
+        target_group_key = "blog_tg"
+      }
     }
   }
 
   target_groups = {
     blog_tg = {
-      name_prefix      = "blog-"
-      protocol         = "HTTP"
-      port             = 80
-      target_type      = "instance"
-      targets = {
-        target_id = aws_instance.blog
-        port      = 80
+      name_prefix     = "blog-"
+      protocol        = "HTTP"
+      port            = 80
+      target_type     = "instance"
+      target_id       = blog.instance_id
       }
     }
   }
